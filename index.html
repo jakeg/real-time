@@ -6,20 +6,27 @@
   <script src="/client.js"></script>
   <style>
     #todays-topic {background: green; color: white; padding: 5px;}
-    img {background: #eee; border: 1px #000 solid;}
+    #img-container {position: relative; width: 400px; height: 300px; border: 1px #000 solid; background: #eee;}
+    img {position: absolute; top: 0; left: 0;}
+    #hotspot { width: 20px; height: 20px; border-radius: 10px; position: absolute; background: yellow; border: 1px red solid; top: 10px; left: 10px;}
+    #mover {position: absolute; top: -18px; font-weight: bold; width: 200px; left: -90px; text-align: center;}
+    body { margin: 0; padding: 0; }
   </style>
 </head>
 <body>
 
-<div><label for="input-name">Your name: <input type='text' id="input-name"></label></div>
-<div><label for="input-topic">Share topic: <input type='text' id="input-topic"></label><input id="input-share" type="submit" value="Share"></div>
-<div><label for="input-img">Share img URL: <input type='text' id="input-img"></label><input id="input-share2" type="submit" value="Share"></div>
-<h3>Today's topic...</h3>
+<div><label for="input-name">Name: <input type='text' id="input-name" value="Anon"></label></div>
+<div><label for="input-topic">Topic: <input type='text' id="input-topic"></label><input id="input-share" type="submit" value="Share"></div>
+<div>
+  <label for="input-img">Img URL: <input type='text' id="input-img"></label><input id="input-share2" type="submit" value="Share">
+  <a class="quick" href="http://www.outshine.com/images/lolcatz/lolcat6.jpg">C</a>
+  <a class="quick" href="http://www.outshine.com/images/lolcatz/lolcat9.jpg">A</a>
+  <a class="quick" href="http://www.lolcats.com/images/u/12/43/lolcatsdotcomlikemyself.jpg">T</a>
+  </div>
 <h2 id="todays-topic"></h2>
-<img src="" width="300" height="200">
-<h3>Who's here today?</h3>
-<ul>
-<li>waiting for first person...</li>
-</ul>
+<div id="img-container">
+  <img src="" width="400" height="300">
+  <div id="hotspot"><div id="mover"></div></div>
+</div>
 </body>
 </html>

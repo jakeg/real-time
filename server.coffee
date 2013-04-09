@@ -1,9 +1,12 @@
 ###
-  - ensure nginx is running to proxy ubuntu vm to windows
-  - connect to phone's hotspot
-  - give everyone the phone's access-point name and password
-  - ipconfig then tell everyone ip e.g. 192.168.1.100:8081
-  - let the fun commence!
+  USAGE:
+    - $ npm install
+    - $ coffee server.coffee
+    - ensure nginx is running to proxy ubuntu vm to windows host
+    - connect to phone's hotspot
+    - give everyone the phone's access-point name and password
+    - ipconfig then tell everyone ip e.g. 192.168.1.100:8081
+    - let the fun commence!
 ###
 
 # BORING STUFF
@@ -24,12 +27,18 @@ io.set('log level', 1)                    # reduce logging
 
 todays_topic = 'no topic yet'
 todays_img = 'http://farm4.static.flickr.com/3066/2677948183_52d02f4f8e_o.jpg'
+global_pos = {x:100, y:100}
+mover = 'Anon'
 
 io.sockets.on('connection', (socket) ->
+
+  # set a default name
+  socket.set('name', 'Anon')
 
   # share current stuff with new peeps
   socket.emit('sync:topic', todays_topic)
   socket.emit('sync:img', todays_img)
+  socket.emit('sync:pos', global_pos)
 
   console.log('session', socket.id)
 
@@ -53,6 +62,16 @@ io.sockets.on('connection', (socket) ->
     console.log('img change', img)
     todays_img = img
     io.sockets.emit('sync:img', img)
+  )
+
+  # move and shake
+  socket.on('move', (pos) ->
+    console.log('move', pos)
+    global_pos = pos
+    socket.get('name', (err, name) ->
+      pos.name = name
+      io.sockets.emit('sync:pos', pos)
+    )
   )
 
   socket.on('disconnect', ->
