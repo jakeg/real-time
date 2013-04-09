@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/jquery.js"></script>
+  <script src="/client.js"></script>
+  <style>
+    #todays-topic {background: green; color: white; padding: 5px;}
+    img {background: #eee; border: 1px #000 solid;}
+  </style>
+</head>
+<body>
+
+<div><label for="input-name">Your name: <input type='text' id="input-name"></label></div>
+<div><label for="input-topic">Share topic: <input type='text' id="input-topic"></label><input id="input-share" type="submit" value="Share"></div>
+<div><label for="input-img">Share img URL: <input type='text' id="input-img"></label><input id="input-share2" type="submit" value="Share"></div>
+<h3>Today's topic...</h3>
+<h2 id="todays-topic"></h2>
+<img src="" width="300" height="200">
+<h3>Who's here today?</h3>
+<ul>
+<li>waiting for first person...</li>
+</ul>
+</body>
+</html>
